@@ -34,8 +34,10 @@ func main() {
 	r.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"*"},
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
-		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization", "X-Requested-With"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization", "X-Requested-With", "Content-Length"},
+		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: false,
+		MaxAge:           12 * 3600,
 	}))
 
 	// Routes
