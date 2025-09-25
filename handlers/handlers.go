@@ -14,6 +14,9 @@ import (
 // Get all questions
 func GetQuestions(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
+		// Set UTF-8 encoding header
+		c.Header("Content-Type", "application/json; charset=utf-8")
+
 		var questions []models.Question
 		if err := db.Find(&questions).Error; err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch questions"})
@@ -29,6 +32,9 @@ func GetQuestions(db *gorm.DB) gin.HandlerFunc {
 // Submit quiz and calculate result
 func SubmitQuiz(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
+		// Set UTF-8 encoding header
+		c.Header("Content-Type", "application/json; charset=utf-8")
+
 		var submission models.QuizSubmission
 		if err := c.ShouldBindJSON(&submission); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

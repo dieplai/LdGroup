@@ -40,6 +40,12 @@ func main() {
 		MaxAge:           12 * 3600,
 	}))
 
+	// UTF-8 middleware
+	r.Use(func(c *gin.Context) {
+		c.Header("Content-Type", "application/json; charset=utf-8")
+		c.Next()
+	})
+
 	// Routes
 	api := r.Group("/api")
 	{
