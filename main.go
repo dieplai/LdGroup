@@ -58,6 +58,7 @@ func main() {
 			admin.GET("/results", handlers.GetAllResults(db))
 			admin.GET("/stats", handlers.GetStats(db))
 			admin.DELETE("/results/:id", handlers.DeleteResult(db))
+			admin.POST("/reset-questions", handlers.ResetQuestions(db))
 		}
 	}
 
